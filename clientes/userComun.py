@@ -70,6 +70,7 @@ def handleSecondOption():
             estrellas: {mensaje[3]}
             reseña: {mensaje[2]}
         """
+        print(output)
         input("presione [Enter] para continuar...")
         os.system('clear')
 
