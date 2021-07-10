@@ -42,6 +42,7 @@ def iniciarSesion(registro):
         else:
             print(resp)
             print("No coincide la clave")
+        iniciarServicio(sock, "se encontró correctamente un usuario aunque no te voa decir si la clave es correcta todavía", "dvnli")
     else:
         print("no hubo resp de la bdd")
 
