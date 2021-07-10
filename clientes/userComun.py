@@ -146,7 +146,7 @@ def handleUserParams():
             handleThirdOption(username)
             os.system('clear')
         elif(select == 4):
-            print("aca se obtienen la coleccion a partir del nombre de usuario: ")
+            handleFourOption(username)
             os.system('clear')
         elif(select == 5):
             handleFiveOption(username)
