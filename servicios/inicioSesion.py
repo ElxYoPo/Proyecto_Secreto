@@ -34,7 +34,16 @@ def iniciarServicio(sock,contenido, servicio):
 def iniciarSesion(registro):
     print("registrar ", registro)
     datos = registro.split(" ")
-    print(datos)
+    resp = coleccionUsuarios.find_one({"usuario": datos[0]})
+    if resp:
+        if resp.password is datos[1]:
+            print(resp)
+            print("se encontró y coincide la clave")
+        else:
+            print(resp)
+            print("No coincide la clave")
+    else:
+        print("no hubo resp de la bdd")
 
 
 def escucharBus(sock):
