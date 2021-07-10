@@ -37,7 +37,7 @@ def showLoginScreen():
     user = input("Usuario: ")
     password = getpass.getpass("Contrasenha: ")
     print(f"prueba usuario: {user} password: {password}")
-    os.system('cls')
+    os.system('clear')
 
     enviarDatos(sock, user + " " + password, "dvnli" )
     serv, mensaje=escucharBus(sock)
@@ -45,17 +45,18 @@ def showLoginScreen():
     if mensaje.endswith("NoUser") or mensaje.endswith("NoPass"):
         input("Usuario o contrasenha incorrectos. Pulse cualquier tecla para continuar")
         showLoginScreen()
-
+    os.system('clear')
     return user, password
 
 def handleFirstOption():
+        os.system('clear')
         name = input("Ingresa el nombre del juego: ")
         review = input("Ingresa tu resena: ")
         stars = input("Ingresa cantidad de estrellas: ")
         enviarDatos(sock, name + "--" + review + "--" + stars, "dvnar" )
         serv, mensaje=escucharBus(sock)
         input(f"{mensaje}, presione [Enter] para continuar...")
-        os.system('cls')
+        os.system('clear')
 
 
 
@@ -70,10 +71,10 @@ def showMenuScreen():
         print(" 6.- Salir")
         select = input(" Opcion: ")
         if(select.isnumeric() and int(select)<=6):
-            os.system('cls')
+            os.system('clear')
             break
         else:
-            os.system('cls')
+            os.system('clear')
     return int(select)
 
 
@@ -85,16 +86,16 @@ def handleUserParams():
             handleFirstOption()
         elif(select == 2):
             name = input("Ingresa el nombre del juego: ")
-            os.system('cls')
+            os.system('clear')
         elif(select == 3):
             name = input("Ingresa el nombre del juego: ")
-            os.system('cls')
+            os.system('clear')
         elif(select == 4):
             print("aca se obtienen la coleccion a partir del nombre de usuario: ")
-            os.system('cls')
+            os.system('clear')
         elif(select == 5):
             name = input("Ingresa el nombre del juego: ")
-            os.system('cls')
+            os.system('clear')
         elif(select == 6):
             break
 
