@@ -46,7 +46,7 @@ def showLoginScreen():
         input("Usuario o contrasenha incorrectos. Pulse cualquier tecla para continuar")
         showLoginScreen()
     os.system('clear')
-    return user, password
+    return user
 
 def handleFirstOption(username):
         os.system('clear')
