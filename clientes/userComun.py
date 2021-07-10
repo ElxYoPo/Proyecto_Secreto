@@ -48,12 +48,12 @@ def showLoginScreen():
     os.system('clear')
     return user, password
 
-def handleFirstOption():
+def handleFirstOption(username):
         os.system('clear')
         name = input("Ingresa el nombre del juego: ")
         review = input("Ingresa tu resena: ")
         stars = input("Ingresa cantidad de estrellas: ")
-        enviarDatos(sock, name + "--" + review + "--" + stars, "dvnar" )
+        enviarDatos(sock, username + "--" + name + "--" + review + "--" + stars, "dvnar" )
         serv, mensaje=escucharBus(sock)
         input(f"{mensaje}, presione [Enter] para continuar...")
         os.system('clear')
@@ -88,11 +88,11 @@ def showMenuScreen():
 
 
 def handleUserParams():
-    showLoginScreen()
+    username = showLoginScreen()
     while True:
         select = showMenuScreen()
         if(select == 1):
-            handleFirstOption()
+            handleFirstOption(username)
         elif(select == 2):
             handleSecondOption()
         elif(select == 3):

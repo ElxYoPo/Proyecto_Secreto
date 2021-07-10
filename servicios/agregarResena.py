@@ -17,8 +17,8 @@ def iniciarServicio(sock,contenido, servicio):
     
 def ingresarResena(registro):
     datos = registro.split("--")
-    postResena.insert_one({"nombre": datos[0], "descripcion": datos[1], "estrellas": datos[2]})
-    resp = postResena.find_one({"nombre": datos[0]})
+    postResena.insert_one({"byUser": datos[0], "nombre": datos[1], "descripcion": datos[2], "estrellas": datos[3]})
+    resp = postResena.find_one({"nombre": datos[1]})
     print(resp)
     iniciarServicio(sock, "Insert realizado", "dvnar") #mandar msg confirmando el insert
 
