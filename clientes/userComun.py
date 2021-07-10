@@ -66,10 +66,12 @@ def handleSecondOption():
     name = input("Ingresa el nombre del juego: ")
     enviarDatos(sock, name,  "dvnor" )
     serv, mensaje=escucharBus(sock)
-    mensaje = mensaje.split('--')
+    mensaje = mensaje.split('---')
     table = PrettyTable()
     table.field_names = ["byUser", "Review","Stars"]
-    table.add_row([ mensaje[0], mensaje[2] , mensaje[3] ])
+    for item in mensaje:
+        msg = item.split('--')
+        table.add_row([ msg[0], msg[1] , msg[2] ])
     print(table)
     input("presione [Enter] para continuar...")
     os.system('clear')
