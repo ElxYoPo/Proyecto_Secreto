@@ -36,7 +36,7 @@ def iniciarSesion(registro):
     datos = registro.split(" ")
     resp = coleccionUsuarios.find_one({"usuario": datos[0]})
     if resp:
-        if resp["password"] is datos[1]:
+        if resp["password"] == datos[1]:
             print(resp)
             print("se encontró y coincide la clave")
         else:
