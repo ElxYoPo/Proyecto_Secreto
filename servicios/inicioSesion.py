@@ -29,9 +29,9 @@ def iniciarServicio(sock,contenido, servicio):
     transaccion = largoText + servicio + contenido
     print("Servicio: transaccion-",transaccion)
     sock.sendall(transaccion.encode())
-    #00010sinitdvnsu seguir editando xd
+    #00010sinitdvnli seguir editando xd
     
-def registrarUsuario(registro):
+def iniciarSesion(registro):
     print("registrar ", registro)
     datos = registro.split(" ")
     json.dump()
@@ -90,7 +90,7 @@ if __name__ == "__main__":
         print("No se ha podido establecer la conexión")
         quit() 
 
-    iniciarServicio(sock, "dvnsu","sinit")
+    iniciarServicio(sock, "dvnli","sinit")
     serv, msg = escucharBus(sock)
     if serv =="sinit" and msg[:2]=="OK":
         print("Servicio: Servicio iniciado con exito")
@@ -100,8 +100,8 @@ if __name__ == "__main__":
     while True:
         serv, msg=escucharBus(sock) # editar func
         print(serv, msg)
-        if serv == "dvnsu":
-            registrarUsuario(json.loads(msg)) # editar func
+        if serv == "dvnli":
+            iniciarSesion(json.loads(msg)) # editar func
 
     print('Cerrando conexión')
     sock.close()
