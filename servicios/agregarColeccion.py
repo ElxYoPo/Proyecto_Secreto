@@ -17,7 +17,7 @@ def iniciarServicio(sock,contenido, servicio):
     
 def ingresarColeccion(registro):
     datos = registro.split("--")
-    obtain = post_coleccion.find({"usuario": datos[0]})
+    obtain = postcoleccion.find_one({"usuario": datos[0]})
     if obtain:
         arr = obtain['array'].append(datos[1])
         postcoleccion.update({"usuario": datos[0]},  {"$set" : {"array": arr}} )
