@@ -19,13 +19,11 @@ def iniciarServicio(sock,contenido, servicio):
     #00010sinitdvnar seguir editando xd
     
 def ingresarResena(registro):
-    # print("registrar ", registro)
-    datos = registro.split(" ")
-    # resp = postResena.find_one({"usuario": datos[0]})
+    datos = registro.split("--")
     postResena.insert_one({"nombre": datos[0], "descripcion": datos[1], "estrellas": datos[2]})
     resp = postResena.find_one({"nombre": datos[0]})
     print(resp)
-    iniciarServicio(sock, "Insert realizado", "dvnli")
+    iniciarServicio(sock, "Insert realizado", "dvnar")
 
     # if resp:
     #     if resp["password"] == datos[1]:

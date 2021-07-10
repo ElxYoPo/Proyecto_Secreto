@@ -12,7 +12,7 @@ def enviarDatos(sock,contenido, servicio):
 
     transaccionLen = len(contenido) + len(servicio)
     largoText = str((transaccionLen)).zfill(5) # zfill rellena con ceros a la izquierda hasta llegar a 5
-
+    
     transaccion = largoText + servicio + contenido
     # print("Servicio: transaccion-",transaccion)
     sock.sendall(transaccion.encode())
@@ -86,7 +86,7 @@ def handleUserParams():
             name = input("Ingresa el nombre del juego: ")
             review = input("Ingresa tu resena: ")
             stars = input("Ingresa cantidad de estrellas: ")
-            enviarDatos(sock, name + " " + review + " " + stars, "dvnar" )
+            enviarDatos(sock, name + "--" + review + "--" + stars, "dvnar" )
             serv, mensaje=escucharBus(sock)
             print(mensaje)
             input("mensaje enviado, presione una tecla para continuar")
