@@ -84,8 +84,12 @@ def handleUserParams():
         select = showMenuScreen()
         if(select == 1):
             name = input("Ingresa el nombre del juego: ")
-            review = input("Ingresa tu reseÃ±a: ")
+            review = input("Ingresa tu resena: ")
             stars = input("Ingresa cantidad de estrellas: ")
+            enviarDatos(sock, name + " " + review + " " + stars, "dvnar" )
+            serv, mensaje=escucharBus(sock)
+            print(mensaje)
+            input("mensaje enviado, presione una tecla para continuar")
             os.system('cls')
         elif(select == 2):
             name = input("Ingresa el nombre del juego: ")
@@ -94,7 +98,7 @@ def handleUserParams():
             name = input("Ingresa el nombre del juego: ")
             os.system('cls')
         elif(select == 4):
-            print("aca se obtienen la colecciÃ³n a partir del nombre de usuario: ")
+            print("aca se obtienen la coleccion a partir del nombre de usuario: ")
             os.system('cls')
         elif(select == 5):
             name = input("Ingresa el nombre del juego: ")
