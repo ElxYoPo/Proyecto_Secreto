@@ -1,5 +1,6 @@
 import socket, sys, json
 from os import system, name
+from prettytable import PrettyTable
 import getpass
 import os
 
@@ -64,13 +65,17 @@ def handleSecondOption():
     enviarDatos(sock, name,  "dvnor" )
     serv, mensaje=escucharBus(sock)
     mensaje = mensaje.split('--')
-    output = f"""
-        =========={mensaje[1]}==========
-        byUser: {mensaje[0]}
-        estrellas: {mensaje[3]}
-        reseña: {mensaje[2]}
-            """
-    print(output)
+    table = PrettyTable()
+    table.field_names = ["byUser", "review","stars"]
+    table.add_row([ mensaje[0], mensaje[2] , mensaje[3] ])
+    # output = f"""
+    # ☲☲☲☲☲☲☲☲☲☲☲☲{mensaje[1]}☲☲☲☲☲☲☲☲☲☲☲☲
+    # ┆byUser: {mensaje[0]}
+    # ┆estrellas: {mensaje[3]}
+    # ┆reseña: {mensaje[2]}
+    # ☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲☲
+    # """
+    print(table)
     input("presione [Enter] para continuar...")
     os.system('clear')
 
