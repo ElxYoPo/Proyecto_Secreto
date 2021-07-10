@@ -49,30 +49,30 @@ def showLoginScreen():
     return user
 
 def handleFirstOption(username):
-        os.system('clear')
-        name = input("Ingresa el nombre del juego: ")
-        review = input("Ingresa tu resena: ")
-        stars = input("Ingresa cantidad de estrellas: ")
-        enviarDatos(sock, username + "--" + name + "--" + review + "--" + stars, "dvnar" )
-        serv, mensaje=escucharBus(sock)
-        input(f"{mensaje}, presione [Enter] para continuar...")
-        os.system('clear')
+    os.system('clear')
+    name = input("Ingresa el nombre del juego: ")
+    review = input("Ingresa tu resena: ")
+    stars = input("Ingresa cantidad de estrellas: ")
+    enviarDatos(sock, username + "--" + name + "--" + review + "--" + stars, "dvnar" )
+    serv, mensaje=escucharBus(sock)
+    input(f"{mensaje}, presione [Enter] para continuar...")
+    os.system('clear')
 
 def handleSecondOption():
-        os.system('clear')
-        name = input("Ingresa el nombre del juego: ")
-        enviarDatos(sock, name,  "dvnor" )
-        serv, mensaje=escucharBus(sock)
-        mensaje = mensaje.split('--')
-        output = f"""
-            =========={mensaje[1]}==========
-            byUser: {mensaje[0]}
-            estrellas: {mensaje[3]}
-            reseña: {mensaje[2]}
-        """
-        print(output)
-        input("presione [Enter] para continuar...")
-        os.system('clear')
+    os.system('clear')
+    name = input("Ingresa el nombre del juego: ")
+    enviarDatos(sock, name,  "dvnor" )
+    serv, mensaje=escucharBus(sock)
+    mensaje = mensaje.split('--')
+    output = f"""
+        =========={mensaje[1]}==========
+        byUser: {mensaje[0]}
+        estrellas: {mensaje[3]}
+        reseña: {mensaje[2]}
+            """
+    print(output)
+    input("presione [Enter] para continuar...")
+    os.system('clear')
 
 
 
