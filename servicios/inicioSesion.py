@@ -34,7 +34,7 @@ def iniciarServicio(sock,contenido, servicio):
 def iniciarSesion(registro):
     print("registrar ", registro)
     datos = registro.split(" ")
-    json.dump()
+    print(datos)
 
 
 def escucharBus(sock):
@@ -101,7 +101,7 @@ if __name__ == "__main__":
         serv, msg=escucharBus(sock) # editar func
         print(serv, msg)
         if serv == "dvnli":
-            iniciarSesion(json.loads(msg)) # editar func
+            iniciarSesion(msg) # editar func
 
     print('Cerrando conexión')
     sock.close()
