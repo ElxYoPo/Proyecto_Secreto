@@ -17,9 +17,9 @@ def iniciarServicio(sock,contenido, servicio):
     
 def obtenerResena(nombre):
     # datos = registro.split("--")
-    resp = postResena.find_one({"nombre": nombre})
+    resp = postResena.find({"nombre": nombre})
     print(resp)
-    iniciarServicio(sock, resp["byUser"] + "--" + resp["nombre"]+"--"+resp["descripcion"]+"--"+resp["estrellas"] , "dvnor") #mandar msg confirmando el insert
+    # iniciarServicio(sock, resp["byUser"] + "--" + resp["nombre"]+"--"+resp["descripcion"]+"--"+resp["estrellas"] , "dvnor") #mandar msg confirmando el insert
 
 def escucharBus(sock):
     cantidadRecibida = 0

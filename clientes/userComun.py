@@ -68,7 +68,7 @@ def handleSecondOption():
     serv, mensaje=escucharBus(sock)
     mensaje = mensaje.split('--')
     table = PrettyTable()
-    table.field_names = ["byUser", "review","stars"]
+    table.field_names = ["byUser", "Review","Stars"]
     table.add_row([ mensaje[0], mensaje[2] , mensaje[3] ])
     print(table)
     input("presione [Enter] para continuar...")
