@@ -24,9 +24,9 @@ def escucharBus(sock):
         cantidadRecibida += len(data)
         # print("data ricibida:",cantidadRecibida)
         # print('received {!r}'.format(data))
-        tamañoTransaccion = int(data[:5].decode())
+        transLen = int(data[:5].decode())
         nombreServicio = data[5:10].decode()
-        msgTransaccion= data[10:5+tamañoTransaccion].decode()
+        msgTransaccion= data[10:5+transLen].decode()
         # print("tamaño de transaccion:",tamañoTransaccion)
         # print("msg:",msgTransaccion)
         return nombreServicio, msgTransaccion
