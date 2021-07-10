@@ -24,9 +24,9 @@ def eliminarColeccion(registro):
         array = list(obtain["array"])
         array.remove(datos[1])
         print(array)
-        # postcoleccion.update_one({"usuario": datos[0]},  {"$set" : {"array": array}} )
+        postcoleccion.update_one({"usuario": datos[0]},  {"$set" : {"array": array}} )
     else:
-        postcoleccion.insert_one({"usuario": datos[0], "array": [datos[1]]})
+        print("el usuario aun no agrega un juego a su coleccion")
 
 
 
