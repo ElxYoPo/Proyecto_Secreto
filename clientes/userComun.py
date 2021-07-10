@@ -55,13 +55,6 @@ def handleFirstOption(username):
         stars = input("Ingresa cantidad de estrellas: ")
         enviarDatos(sock, username + "--" + name + "--" + review + "--" + stars, "dvnar" )
         serv, mensaje=escucharBus(sock)
-        mensaje = mensaje.split('--')
-        output = f"""
-            =========={mensaje[1]}==========
-            byUser: {mensaje[0]}
-            estrellas: {mensaje[3]}
-            reseña: {mensaje[2]}
-        """
         input(f"{mensaje}, presione [Enter] para continuar...")
         os.system('clear')
 
@@ -70,7 +63,13 @@ def handleSecondOption():
         name = input("Ingresa el nombre del juego: ")
         enviarDatos(sock, name,  "dvnor" )
         serv, mensaje=escucharBus(sock)
-        print(mensaje)
+        mensaje = mensaje.split('--')
+        output = f"""
+            =========={mensaje[1]}==========
+            byUser: {mensaje[0]}
+            estrellas: {mensaje[3]}
+            reseña: {mensaje[2]}
+        """
         input("presione [Enter] para continuar...")
         os.system('clear')
 
