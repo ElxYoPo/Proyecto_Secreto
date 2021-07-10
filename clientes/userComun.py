@@ -51,6 +51,7 @@ def showLoginScreen():
 
 def handleFirstOption(username):
     os.system('clear')
+    print("|============= Completa los campos =============|")
     name = input("Ingresa el nombre del juego: ")
     review = input("Ingresa tu resena: ")
     stars = input("Ingresa cantidad de estrellas: ")
