@@ -77,11 +77,11 @@ def handleSecondOption():
     input("presione [Enter] para continuar...")
     os.system('clear')
 
-def handleThirdOption():
+def handleThirdOption(username):
     os.system('clear')
     print("|============= Completa los campos =============|")
     name = input("Ingresa el nombre del juego: ")
-    enviarDatos(sock, name,  "dvnac" )
+    enviarDatos(sock, username+"--"+name,  "dvnac" )
     serv, mensaje=escucharBus(sock)
     # mensaje = mensaje.split('---')
     # mensaje.pop(0) #elimina el OK
@@ -122,7 +122,7 @@ def handleUserParams():
         elif(select == 2):
             handleSecondOption()
         elif(select == 3):
-            handleThirdOption()
+            handleThirdOption(username)
             os.system('clear')
         elif(select == 4):
             print("aca se obtienen la coleccion a partir del nombre de usuario: ")
