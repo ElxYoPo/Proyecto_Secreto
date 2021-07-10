@@ -67,8 +67,7 @@ def handleSecondOption():
     enviarDatos(sock, name,  "dvnor" )
     serv, mensaje=escucharBus(sock)
     mensaje = mensaje.split('---')
-    mensaje.pop(0)
-    print(mensaje)
+    mensaje.pop(0) #elimina el OK
     table = PrettyTable()
     table.field_names = ["byUser", "Review","Stars"]
     for item in mensaje:
