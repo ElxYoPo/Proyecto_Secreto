@@ -46,19 +46,18 @@ def showLoginScreen():
         input("Usuario o contrasenha incorrectos. Pulse cualquier tecla para continuar")
         showLoginScreen()
 
-    # msg =  json.loads(mensaje[2:]) # los 2 primeros caracteres son OK
-    # print(serv, msg)
-    # if msg["respuesta"] == "noNombre":
-    #     input("No se ha encontrado el usuario. Presione una tecla para continuar")
-    #     showLoginScreen()
-    # elif msg["respuesta"] == "noPass":
-    #     input("La contrasenha no coincide con el usuario. Presione una tecla para continuar")
-    #     showLoginScreen()
-    # else:
-    #     print(msg["respuesta"])
-    #     pass
-
     return user, password
+
+def handleFirstOption():
+        name = input("Ingresa el nombre del juego: ")
+        review = input("Ingresa tu resena: ")
+        stars = input("Ingresa cantidad de estrellas: ")
+        enviarDatos(sock, name + "--" + review + "--" + stars, "dvnar" )
+        serv, mensaje=escucharBus(sock)
+        input(f"{mensaje}, presione [Enter] para continuar...")
+        os.system('cls')
+
+
 
 def showMenuScreen():
     while True:
@@ -77,20 +76,13 @@ def showMenuScreen():
             os.system('cls')
     return int(select)
 
-def handleUserParams():
 
+def handleUserParams():
     showLoginScreen()
     while True:
         select = showMenuScreen()
         if(select == 1):
-            name = input("Ingresa el nombre del juego: ")
-            review = input("Ingresa tu resena: ")
-            stars = input("Ingresa cantidad de estrellas: ")
-            enviarDatos(sock, name + "--" + review + "--" + stars, "dvnar" )
-            serv, mensaje=escucharBus(sock)
-            print(mensaje)
-            input("mensaje enviado, presione una tecla para continuar")
-            os.system('cls')
+            handleFirstOption()
         elif(select == 2):
             name = input("Ingresa el nombre del juego: ")
             os.system('cls')

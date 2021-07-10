@@ -5,14 +5,11 @@ from mongotest import post_resena
 import json
 
 postResena = post_resena()
-# print(coleccionUsuarios)
 
 def iniciarServicio(sock,contenido, servicio):
-    
     #construccion de la transaccion
     transaccionLen = len(contenido) + len(servicio)
     largoText = str((transaccionLen)).zfill(5) # zfill rellena con ceros a la izquierda hasta llegar a 5
-
     transaccion = largoText + servicio + contenido
     print("Servicio: transaccion-",transaccion)
     sock.sendall(transaccion.encode())
@@ -23,25 +20,10 @@ def ingresarResena(registro):
     postResena.insert_one({"nombre": datos[0], "descripcion": datos[1], "estrellas": datos[2]})
     resp = postResena.find_one({"nombre": datos[0]})
     print(resp)
-    iniciarServicio(sock, "Insert realizado", "dvnar")
-
-    # if resp:
-    #     if resp["password"] == datos[1]:
-    #         print(resp)
-    #         print("se encontró y coincide la clave")
-    #         iniciarServicio(sock, "Usuario y contrasena correcta", "dvnar")
-    #     else:
-    #         print(resp)
-    #         print("No coincide la clave. NoPass")
-    #         iniciarServicio(sock, "NoPass", "dvnar")
-    # else:
-    #     print("no hubo resp de la bdd. NoUser")
-    #     iniciarServicio(sock, "NoUser", "dvnar")
-
+    iniciarServicio(sock, "Insert realizado", "dvnar") #mandar msg confirmando el insert
 
 def escucharBus(sock):
     cantidadRecibida = 0
-    
     while True:
         data = sock.recv(4096)
         cantidadRecibida += len(data)
@@ -49,8 +31,6 @@ def escucharBus(sock):
         nombreServicio = data[5:10].decode()
         msgTransaccion= data[10:5+transLen].decode()
         return nombreServicio, msgTransaccion
-
-
 
 if __name__ == "__main__":
     try:
