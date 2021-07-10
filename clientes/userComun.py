@@ -83,6 +83,7 @@ def handleThirdOption(username):
     name = input("Ingresa el nombre del juego: ")
     enviarDatos(sock, username+"--"+name,  "dvnac" )
     serv, mensaje=escucharBus(sock)
+    print(mensaje)
     # mensaje = mensaje.split('---')
     # mensaje.pop(0) #elimina el OK
     # table = PrettyTable()
