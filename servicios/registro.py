@@ -1,20 +1,41 @@
 import socket
 import socket, sys, json
 from typing import Counter
+from mongotest import get_database
 import json
 
-with open("./SecurityDatabase/noEsExcel.json") as DB:
-    database = json.load(DB)
-    DB.close()
+# with open("./SecurityDatabase/noEsExcel.json") as DB:
+#     database = json.load(DB)
+#     DB.close()
 
-usuarios = database['usuarios']
-biblioteca = database['biblioteca']
-juegos = database['juegos']
-categorias = database['categorias']
-catPorJuego = database['catPorJuego']
+# usuarios = database['usuarios']
+# biblioteca = database['biblioteca']
+# juegos = database['juegos']
+# categorias = database['categorias']
+# catPorJuego = database['catPorJuego']
+
+coleccionUsuarios = get_database()
+print(coleccionUsuarios)
 
 # print(usuarios)
 # print(catPorJuego)
+
+def iniciarServicio(sock,contenido, servicio):
+    
+    #construccion de la transaccion
+    transaccionLen = len(contenido) + len(servicio)
+    largoText = str((transaccionLen)).zfill(5) # zfill rellena con ceros a la izquierda hasta llegar a 5
+
+    transaccion = largoText + servicio + contenido
+    print("Servicio: transaccion-",transaccion)
+    sock.sendall(transaccion.encode())
+    #00010sinitdvnsu seguir editando xd
+    
+def registrarUsuario(registro):
+    print("registrar ", registro)
+    datos = registro.split(" ")
+    json.dump()
+
 
 def escucharBus(sock):
     cantidadRecibida = 0
@@ -32,19 +53,7 @@ def escucharBus(sock):
         return nombreServicio, msgTransaccion
 
 #Generacion de la transaccion
-def enviarTransaccion(sock,contenido, servicio):
-    
-    #construccion de la transaccion
-    transaccionLen = len(contenido) + len(servicio)
-    largoText = str((transaccionLen).zfill(5)) # zfill rellena con ceros a la izquierda hasta llegar a 5
 
-    transaccion = largoText + servicio + contenido
-    print("Servicio: transaccion-",transaccion)
-    sock.sendall(transaccion.encode())
-    #00010sinitdvnsu seguir editando xd
-    
-def registrarUsuario(registro):
-    print("registrar ", registro)
 
 
 
@@ -81,8 +90,7 @@ if __name__ == "__main__":
         print("No se ha podido establecer la conexión")
         quit() 
 
-    enviarTransaccion(sock, "dvnsu","sinit")
-    # crearBase()
+    iniciarServicio(sock, "dvnsu","sinit")
     serv, msg = escucharBus(sock)
     if serv =="sinit" and msg[:2]=="OK":
         print("Servicio: Servicio iniciado con exito")
@@ -92,7 +100,7 @@ if __name__ == "__main__":
     while True:
         serv, msg=escucharBus(sock) # editar func
         print(serv, msg)
-        if serv == "signp":
+        if serv == "dvnsu":
             registrarUsuario(json.loads(msg)) # editar func
 
     print('Cerrando conexión')
