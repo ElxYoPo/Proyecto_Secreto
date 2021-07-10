@@ -39,12 +39,15 @@ def iniciarSesion(registro):
         if resp["password"] == datos[1]:
             print(resp)
             print("se encontró y coincide la clave")
+            iniciarServicio(sock, "se encontró correctamente un usuario aunque no te voa decir si la clave es correcta todavía", "dvnli")
         else:
             print(resp)
-            print("No coincide la clave")
+            print("No coincide la clave. NoPass")
+            iniciarServicio(sock, "NoPass", "dvnli")
         iniciarServicio(sock, "se encontró correctamente un usuario aunque no te voa decir si la clave es correcta todavía", "dvnli")
     else:
-        print("no hubo resp de la bdd")
+        print("no hubo resp de la bdd. NoUser")
+        iniciarServicio(sock, "NoUser", "dvnli")
 
 
 def escucharBus(sock):

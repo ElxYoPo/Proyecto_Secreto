@@ -41,8 +41,10 @@ def showLoginScreen():
 
     enviarDatos(sock, user + " " + password, "dvnli" )
     serv, mensaje=escucharBus(sock)
-
     print(mensaje)
+    if mensaje.endswith("NoUser") or mensaje.endswith("NoPass"):
+        input("Usuario o contrasenha incorrectos. Pulse cualquier tecla para continuar")
+        showLoginScreen()
 
     # msg =  json.loads(mensaje[2:]) # los 2 primeros caracteres son OK
     # print(serv, msg)
