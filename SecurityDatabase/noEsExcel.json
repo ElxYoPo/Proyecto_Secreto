@@ -1,0 +1,65 @@
+{
+    "usuarios": [
+        {
+            "nombre": "Diego Araya",
+            "ID": 1,
+            "username": "SuperDios69",
+            "password": "superdios",
+            "email": "diego.araya1@mail.udp.cl",
+            "activo": true
+        },
+        {
+            "nombre": "Vicente Alday",
+            "ID": 2,
+            "username": "SuperDios420",
+            "password": "superdios",
+            "email": "vicente.alday@mail.udp.cl",
+            "activo": true
+        },
+        {
+            "nombre": "Nicolás Oliva",
+            "ID": 3,
+            "username": "SuperDiosXD",
+            "password": "superdios",
+            "email": "nicolas.oliva1@mail.udp.cl",
+            "activo": true
+        }
+    ],
+    "juegos": [
+        {
+            "ID": 1,
+            "nombre": "Juego de rol del ejemplo del profe",
+            "calificacionPromedio": 1.5,
+            "imagen": "juegoprofe.jpg"
+        }
+    ],
+    "biblioteca": [
+        {
+            "userID": 1,
+            "juegoID": 1,
+            "calificacionPersonal": 1.5,
+            "resenha": "Este juego tiene el potencial de mejorar a lo que fue su antecesor, sin embargo resulta perfecto como ejemplo para explicar el funcionamiento de un modelo de control mediante manejadores de interrupciones, ya que al apretar distintos botones se interrumpen las funcionalidades anteriores para ejercer el nuevo comando.",
+            "favorito": true
+        }
+    ],
+    "categorias": [
+        {
+            "nombre": "Rol",
+            "descripcion": "Juegos que encajan perfectamente con el ejemplo de modelo de control mediante manejadores de interrupciones"
+        },
+        {
+            "nombre": "Otaku",
+            "descripcion": "Juegos que le gustan al Nico"
+        }
+    ],
+    "catPorJuego": [
+        {
+            "juegoID": 1,
+            "nombreCat": "Rol"
+        },
+        {
+            "juegoID": 1,
+            "nombreCat": "Otaku"
+        }
+    ]
+}
