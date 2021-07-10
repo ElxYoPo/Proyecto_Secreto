@@ -77,6 +77,23 @@ def handleSecondOption():
     input("presione [Enter] para continuar...")
     os.system('clear')
 
+def handleThirdOption():
+    os.system('clear')
+    print("|============= Completa los campos =============|")
+    name = input("Ingresa el nombre del juego: ")
+    enviarDatos(sock, name,  "dvnac" )
+    serv, mensaje=escucharBus(sock)
+    # mensaje = mensaje.split('---')
+    # mensaje.pop(0) #elimina el OK
+    # table = PrettyTable()
+    # table.field_names = ["byUser", "Review","Stars"]
+    # for item in mensaje:
+    #     msg = item.split('--')
+    #     table.add_row([ msg[0], msg[1] , msg[2] ])
+    # print(table)
+    input("presione [Enter] para continuar...")
+    os.system('clear')
+
 def showMenuScreen():
     while True:
         print("|=============== Menu de usuario ===============|")
@@ -105,7 +122,7 @@ def handleUserParams():
         elif(select == 2):
             handleSecondOption()
         elif(select == 3):
-            name = input("Ingresa el nombre del juego: ")
+            handleThirdOption()
             os.system('clear')
         elif(select == 4):
             print("aca se obtienen la coleccion a partir del nombre de usuario: ")
