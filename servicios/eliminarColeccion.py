@@ -24,7 +24,7 @@ def eliminarColeccion(registro):
         array = list(obtain["array"])
         for i in array:
             print(i)
-            if(i == registro[1]):
+            if(i == datos[1]):
                 print(i)
         # postcoleccion.update_one({"usuario": datos[0]},  {"$set" : {"array": array}} )
     else:
