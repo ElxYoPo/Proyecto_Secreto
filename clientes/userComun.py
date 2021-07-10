@@ -84,14 +84,15 @@ def handleThirdOption(username):
     enviarDatos(sock, username+"--"+name,  "dvnac" )
     serv, mensaje=escucharBus(sock)
     print(mensaje)
-    # mensaje = mensaje.split('---')
-    # mensaje.pop(0) #elimina el OK
-    # table = PrettyTable()
-    # table.field_names = ["byUser", "Review","Stars"]
-    # for item in mensaje:
-    #     msg = item.split('--')
-    #     table.add_row([ msg[0], msg[1] , msg[2] ])
-    # print(table)
+    input("presione [Enter] para continuar...")
+    os.system('clear')
+
+def handleFourOption(username):
+    os.system('clear')
+    print("|============= Completa los campos =============|")
+    enviarDatos(sock, username,  "dvnoc" )
+    serv, mensaje=escucharBus(sock)
+    print(mensaje)
     input("presione [Enter] para continuar...")
     os.system('clear')
 
