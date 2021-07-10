@@ -19,10 +19,10 @@ def ingresarColeccion(registro):
     datos = registro.split("--")
     obtain = postcoleccion.find_one({"usuario": datos[0]})
     if obtain:
-        arr = obtain['array'].append(datos[1])
+        arr = obtain['array'].append(registro)
         postcoleccion.update({"usuario": datos[0]},  {"$set" : {"array": arr}} )
     else:
-        postcoleccion.insert_one({"usuario": datos[0], "array": [datos[1]]})
+        postcoleccion.insert_one({"usuario": datos[0], "array": [registro]})
 
     # resp = postResena.find_one({"nombre": datos[1]})
     # print(resp)
