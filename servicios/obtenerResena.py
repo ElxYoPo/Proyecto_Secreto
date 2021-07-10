@@ -19,8 +19,7 @@ def obtenerResena(nombre):
     # datos = registro.split("--")
     resp = postResena.find_one({"nombre": nombre})
     print(resp)
-    resp = json.dumps(resp)
-    iniciarServicio(sock, resp , "dvnor") #mandar msg confirmando el insert
+    iniciarServicio(sock, resp["nombre"]+"--"+resp["descripcion"]+"--"+resp["estrellas"] , "dvnor") #mandar msg confirmando el insert
 
 def escucharBus(sock):
     cantidadRecibida = 0
