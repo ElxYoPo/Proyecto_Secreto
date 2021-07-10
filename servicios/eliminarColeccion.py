@@ -25,8 +25,9 @@ def eliminarColeccion(registro):
         array.remove(datos[1])
         print(array)
         postcoleccion.update_one({"usuario": datos[0]},  {"$set" : {"array": array}} )
+        iniciarServicio(sock, "Delete realizado", "dvnac") #mandar msg confirmando el insert
     else:
-        print("el usuario aun no agrega un juego a su coleccion")
+        iniciarServicio(sock, "No se pudo realizar el delete", "dvnac") #mandar msg confirmando el insert
 
 
 
