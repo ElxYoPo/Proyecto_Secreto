@@ -58,6 +58,15 @@ def handleFirstOption():
         input(f"{mensaje}, presione [Enter] para continuar...")
         os.system('clear')
 
+def handleSecondOption():
+        os.system('clear')
+        name = input("Ingresa el nombre del juego: ")
+        enviarDatos(sock, name,  "dvnor" )
+        serv, mensaje=escucharBus(sock)
+        print(mensaje)
+        input("presione [Enter] para continuar...")
+        os.system('clear')
+
 
 
 def showMenuScreen():
@@ -85,8 +94,7 @@ def handleUserParams():
         if(select == 1):
             handleFirstOption()
         elif(select == 2):
-            name = input("Ingresa el nombre del juego: ")
-            os.system('clear')
+            handleSecondOption()
         elif(select == 3):
             name = input("Ingresa el nombre del juego: ")
             os.system('clear')

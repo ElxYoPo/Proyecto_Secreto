@@ -15,7 +15,7 @@ def post_resena():
     resena = db["resena"]
     # coleccion.insert_one({"usuario": "Prueba", "password": "prueba123"})
     return resena
-    
+
 # # This is added so that many files can reuse the function get_database()
 if __name__ == "__main__":    
     
