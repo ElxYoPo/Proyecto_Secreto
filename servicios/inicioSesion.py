@@ -39,7 +39,7 @@ def iniciarSesion(registro):
         if resp["password"] == datos[1]:
             print(resp)
             print("se encontró y coincide la clave")
-            iniciarServicio(sock, "se encontró correctamente un usuario aunque no te voa decir si la clave es correcta todavía", "dvnli")
+            iniciarServicio(sock, "Usuario y contrasena correcta", "dvnli")
         else:
             print(resp)
             print("No coincide la clave. NoPass")
