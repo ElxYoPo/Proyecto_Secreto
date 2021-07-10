@@ -20,7 +20,7 @@ def ingresarColeccion(registro):
     obtain = postcoleccion.find_one({"usuario": datos[0]})
     if obtain:
         arr = obtain['array'].append(datos[1])
-        postcoleccion.update({"usuario": datos[0]},  {"$set" : {"array": arr}} )
+        postcoleccion.update_one({"usuario": datos[0]},  {"$set" : {"array": arr}} )
     else:
         postcoleccion.insert_one({"usuario": datos[0], "array": [datos[1]]})
 
