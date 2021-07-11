@@ -18,11 +18,14 @@ def iniciarServicio(sock,contenido, servicio):
 def obtenerColeccion(registro):
     obtain = postcoleccion.find_one({"usuario": registro})
     if obtain:
-        output = obtain['array']
-        output = "--".join(output)
-        iniciarServicio(sock, output, "dvnoc") #mandar msg confirmando el insert
+        if(obtain['array']):
+            output = obtain['array']
+            output = "--".join(output)
+            iniciarServicio(sock, output, "dvnoc") #mandar msg confirmando el insert
+        else:
+            iniciarServicio(sock, "No existen coleccion de juegos para este usuario", "dvnoc") #mandar msg confirmando el insert
     else:
-        iniciarServicio(sock, "Error al obtener la coleccion", "dvnoc") #mandar msg confirmando el insert
+        iniciarServicio(sock, "No existen coleccion de juegos para este usuario", "dvnoc") #mandar msg confirmando el insert
 
     
     # if obtain['array']:
