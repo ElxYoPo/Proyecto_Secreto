@@ -1,3 +1,4 @@
+from re import I
 import socket
 import socket, sys, json
 from typing import Counter
@@ -39,7 +40,10 @@ def iniciarSesion(registro):
         if resp["password"] == datos[1]:
             print(resp)
             print("se encontró y coincide la clave")
-            iniciarServicio(sock, "Usuario y contrasena correcta", "dvnli")
+            if resp["activo"] == True:
+                iniciarServicio(sock, "Inicio de sesion con cuenta " + resp["rol"], "dvnli")
+            else:
+                iniciarServicio(sock, "Esta cuenta se encuentra desactivada. NoActive", "dvnli")
         else:
             print(resp)
             print("No coincide la clave. NoPass")
@@ -47,7 +51,6 @@ def iniciarSesion(registro):
     else:
         print("no hubo resp de la bdd. NoUser")
         iniciarServicio(sock, "NoUser", "dvnli")
-
 
 def escucharBus(sock):
     cantidadRecibida = 0

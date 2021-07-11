@@ -46,6 +46,12 @@ def showLoginScreen():
     if mensaje.endswith("NoUser") or mensaje.endswith("NoPass"):
         input("Usuario o contrasenha incorrectos. Pulse cualquier tecla para continuar")
         showLoginScreen()
+    elif mensaje.endswith("NoActive"):
+        input("Esta cuenta no se encuentra activa. Pulse cualquier tecla para continuar")
+        showLoginScreen()
+    elif mensaje.endswith("admin"):
+        input("Esta cuenta corresponde al rol de administrador y no puede acceder a este menu. Pulse cualquier tecla para continuar")
+        showLoginScreen()
     os.system('clear')
     return user
 
