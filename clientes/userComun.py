@@ -64,6 +64,9 @@ def handleFirstOption(username):
             break
         else:
             print("Todos los campos son obligatorios")
+            input(" presione [Enter] para continuar...")
+            os.system('clear')
+
 
 
 def handleSecondOption():
