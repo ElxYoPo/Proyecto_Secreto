@@ -63,7 +63,7 @@ def handleFirstOption(username):
             os.system('clear')
             break
         else:
-            print("Todos los campos son obligatorios")
+            print("Verifique si se completaron todos los campos y si se ingresó un número entero para las estrellas.")
             input(" presione [Enter] para continuar...")
             os.system('clear')
 
