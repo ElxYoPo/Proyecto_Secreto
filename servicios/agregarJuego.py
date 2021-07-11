@@ -1,10 +1,10 @@
 import socket
 import socket, sys, json
 from typing import Counter
-from mongotest import post_coleccion
+from mongotest import post_juegos
 import json
 
-postcoleccion = post_coleccion()
+postJuego = post_juegos()
 
 def iniciarServicio(sock,contenido, servicio):
     #construccion de la transaccion
@@ -17,19 +17,20 @@ def iniciarServicio(sock,contenido, servicio):
     
 def ingresarJuego(registro):
     datos = registro.split("--")
-    obtain = postcoleccion.find_one({"usuario": datos[0]})
-    if obtain:
-        if(obtain['array']):
-            # print(obtain["array"])
-            array = obtain["array"]
-            array.append(datos[1])
-            postcoleccion.update_one({"usuario": datos[0]},  {"$set" : {"array": array}} )
-            iniciarServicio(sock, "Juego agregado correctamente", "dvnac") #mandar msg confirmando el insert
-        else:
-            postcoleccion.insert_one({"usuario": datos[0], "array": [datos[1]]})
-            iniciarServicio(sock, "Juego agregado correctamente", "dvnac") #mandar msg confirmando el insert
-    else:
-        iniciarServicio(sock, "No se ha podido agregar", "dvnac") #mandar msg confirmando el insert
+    agregar = postJuego.insert_one({"nombre": datos[0], "publisher": datos[1], "desarrolladora": datos[2], "plataforma": datos[3], "genero": datos[4]})
+    print(agregar)
+    # if agregar:
+    #     if(obtain['array']):
+    #         # print(obtain["array"])
+    #         array = obtain["array"]
+    #         array.append(datos[1])
+    #         postJuego.update_one({"usuario": datos[0]},  {"$set" : {"array": array}} )
+    #         iniciarServicio(sock, "Juego agregado correctamente", "dvnac") #mandar msg confirmando el insert
+    #     else:
+    #         postJuego.insert_one({"usuario": datos[0], "array": [datos[1]]})
+    #         iniciarServicio(sock, "Juego agregado correctamente", "dvnac") #mandar msg confirmando el insert
+    # else:
+    #     iniciarServicio(sock, "No se ha podido agregar", "dvnac") #mandar msg confirmando el insert
 
     # resp = postResena.find_one({"nombre": datos[1]})
     # print(resp)
