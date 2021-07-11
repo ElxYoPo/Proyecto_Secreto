@@ -34,7 +34,7 @@ def escucharBus(sock):
         return nombreServicio, msgTransaccion
 
 def showLoginScreen():
-    print("|=============== Bienvenido ===============|")
+    print("□□□□□□□□□□ Inicio sesión Usuario común □□□□□□□□□□")
     user = input("Usuario: ")
     password = getpass.getpass("Contrasenha: ")
     print(f"prueba usuario: {user} password: {password}")
@@ -57,20 +57,37 @@ def showLoginScreen():
 
 def handleFirstOption(username):
     os.system('clear')
-    print("|============= Completa los campos =============|")
-    name = input("Ingresa el nombre del juego: ")
-    review = input("Ingresa tu resena: ")
-    stars = input("Ingresa cantidad de estrellas: ")
-    enviarDatos(sock, username + "--" + name + "--" + review + "--" + stars, "dvnar" )
-    serv, mensaje=escucharBus(sock)
-    input(f"{mensaje}, presione [Enter] para continuar...")
-    os.system('clear')
+    print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
+    while True:
+        name = input("Ingresa el nombre del juego: ")
+        review = input("Ingresa tu resena: ")
+        stars = input("Ingresa cantidad de estrellas [0-10]: ")
+        if(name and review and stars and stars.isdigit() and  0 <= int(stars) <= 10 ):
+            enviarDatos(sock, username + "--" + name + "--" + review + "--" + stars, "dvnar" )
+            serv, mensaje=escucharBus(sock)
+            input(f"{mensaje}, presione [Enter] para continuar...")
+            os.system('clear')
+            break
+        else:
+            print(" Verifique los datos ingresados")
+            input(" presione [Enter] para continuar...")
+            os.system('clear')
+
+
 
 def handleSecondOption():
     os.system('clear')
-    print("|============= Completa los campos =============|")
-    name = input("Ingresa el nombre del juego: ")
+    print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
+    while True:
+        name = input("Ingresa el nombre del juego: ")
+        if(name):
+            break
+        else:
+            print( "Debe completar la información solicitada")
+            input(" presione [Enter] para continuar...")
+            os.system('clear')
     enviarDatos(sock, name,  "dvnor" )
+    
     serv, mensaje=escucharBus(sock)
     mensaje = mensaje.split('---')
     mensaje.pop(0) #elimina el OK
@@ -85,7 +102,7 @@ def handleSecondOption():
 
 def handleThirdOption(username):
     os.system('clear')
-    print("|============= Completa los campos =============|")
+    print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
     name = input("Ingresa el nombre del juego: ")
     enviarDatos(sock, username+"--"+name,  "dvnac" )
     serv, mensaje=escucharBus(sock)
@@ -95,7 +112,7 @@ def handleThirdOption(username):
 
 def handleFourOption(username):
     os.system('clear')
-    print("|============= Completa los campos =============|")
+    print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
     enviarDatos(sock, username,  "dvnoc" )
     serv, mensaje=escucharBus(sock)
     print(mensaje)
@@ -105,7 +122,7 @@ def handleFourOption(username):
 
 def handleFiveOption(username):
     os.system('clear')
-    print("□□□□□□□□□□ Inicio sesión Usuario común □□□□□□□□□□")
+    print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
     name = input("Ingresa el nombre del juego: ")
     enviarDatos(sock, username+"--"+name,  "dvnec" )
     serv, mensaje=escucharBus(sock)
