@@ -50,9 +50,10 @@ def showLoginScreen():
     return user
 
 def handleFirstOption(username):
-    os.system('clear')
-    print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
+
     while True:
+        os.system('clear')
+        print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
         name = input("Ingresa el nombre del juego: ")
         review = input("Ingresa tu resena: ")
         stars = input("Ingresa cantidad de estrellas [0-10]: ")
@@ -65,22 +66,21 @@ def handleFirstOption(username):
         else:
             print(" Verifique los datos ingresados")
             input(" presione [Enter] para continuar...")
-            os.system('clear')
 
 
 
 def handleSecondOption():
-    os.system('clear')
-    print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
     while True:
+        os.system('clear')
+        print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
         name = input("Ingresa el nombre del juego: ")
         if(name):
+            enviarDatos(sock, name,  "dvnor" )
             break
         else:
             print( "Debe completar la información solicitada")
             input(" presione [Enter] para continuar...")
-            os.system('clear')
-    enviarDatos(sock, name,  "dvnor" )
+
     
     serv, mensaje=escucharBus(sock)
     mensaje = mensaje.split('---')
@@ -95,10 +95,17 @@ def handleSecondOption():
     os.system('clear')
 
 def handleThirdOption(username):
-    os.system('clear')
-    print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
-    name = input("Ingresa el nombre del juego: ")
-    enviarDatos(sock, username+"--"+name,  "dvnac" )
+    while True:
+        os.system('clear')
+        print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
+        name = input("Ingresa el nombre del juego: ")
+        if(name):
+            enviarDatos(sock, username+"--"+name,  "dvnac" )
+            break
+        else:
+            print( "Debe completar la información solicitada")
+            input(" presione [Enter] para continuar...")
+
     serv, mensaje=escucharBus(sock)
     print(mensaje)
     input("presione [Enter] para continuar...")
