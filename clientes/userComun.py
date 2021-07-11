@@ -54,11 +54,17 @@ def handleFirstOption(username):
     print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
     name = input("Ingresa el nombre del juego: ")
     review = input("Ingresa tu resena: ")
-    stars = input("Ingresa cantidad de estrellas: ")
-    enviarDatos(sock, username + "--" + name + "--" + review + "--" + stars, "dvnar" )
-    serv, mensaje=escucharBus(sock)
-    input(f"{mensaje}, presione [Enter] para continuar...")
-    os.system('clear')
+    stars = input("Ingresa cantidad de estrellas [0-10]: ")
+    while True:
+        if(name and review and stars and stars.isdigit() and  0 <= int(stars) <= 10 ):
+            enviarDatos(sock, username + "--" + name + "--" + review + "--" + stars, "dvnar" )
+            serv, mensaje=escucharBus(sock)
+            input(f"{mensaje}, presione [Enter] para continuar...")
+            os.system('clear')
+            break
+        else:
+            print("Todos los campos son obligatorios")
+
 
 def handleSecondOption():
     os.system('clear')
