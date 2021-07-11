@@ -72,8 +72,16 @@ def handleFirstOption(username):
 def handleSecondOption():
     os.system('clear')
     print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
-    name = input("Ingresa el nombre del juego: ")
+    while True:
+        name = input("Ingresa el nombre del juego: ")
+        if(name):
+            break
+        else:
+            print( "Debe completar la información solicitada")
+            input(" presione [Enter] para continuar...")
+            os.system('clear')
     enviarDatos(sock, name,  "dvnor" )
+    
     serv, mensaje=escucharBus(sock)
     mensaje = mensaje.split('---')
     mensaje.pop(0) #elimina el OK
