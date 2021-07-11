@@ -128,20 +128,19 @@ def handleFourOption(username):
 
 
 def handleFiveOption(username):
-    os.system('clear')
-    print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
-    name = input("Ingresa el nombre del juego: ")
-    enviarDatos(sock, username+"--"+name,  "dvnec" )
+    while True:
+        os.system('clear')
+        print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
+        name = input("Ingresa el nombre del juego: ")
+        if(name):
+            enviarDatos(sock, username+"--"+name,  "dvnec" )
+            break
+        else:
+            print( "Debe completar la información solicitada")
+            input(" presione [Enter] para continuar...")
     serv, mensaje=escucharBus(sock)
-    # mensaje = mensaje.split('---')
-    # mensaje.pop(0) #elimina el OK
-    # table = PrettyTable()
-    # table.field_names = ["byUser", "Review","Stars"]
-    # for item in mensaje:
-    #     msg = item.split('--')
-    #     table.add_row([ msg[0], msg[1] , msg[2] ])
-    # print(table)
     print(mensaje)
+    
     input("presione [Enter] para continuar...")
     os.system('clear')
 
