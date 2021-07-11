@@ -20,7 +20,7 @@ def ingresarResena(registro):
     postResena.insert_one({"byUser": datos[0], "nombre": datos[1], "descripcion": datos[2], "estrellas": datos[3]})
     resp = postResena.find_one({"nombre": datos[1]})
     print(resp)
-    iniciarServicio(sock, "Insert realizado", "dvnar") #mandar msg confirmando el insert
+    iniciarServicio(sock, "Reseña añadida con exito", "dvnar") #mandar msg confirmando el insert
 
 def escucharBus(sock):
     cantidadRecibida = 0
