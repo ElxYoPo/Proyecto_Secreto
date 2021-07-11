@@ -56,9 +56,10 @@ def showLoginScreen():
     return user
 
 def handleFirstOption(username):
-    os.system('clear')
-    print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
+
     while True:
+        os.system('clear')
+        print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
         name = input("Ingresa el nombre del juego: ")
         review = input("Ingresa tu resena: ")
         stars = input("Ingresa cantidad de estrellas [0-10]: ")
@@ -71,22 +72,21 @@ def handleFirstOption(username):
         else:
             print(" Verifique los datos ingresados")
             input(" presione [Enter] para continuar...")
-            os.system('clear')
 
 
 
 def handleSecondOption():
-    os.system('clear')
-    print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
     while True:
+        os.system('clear')
+        print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
         name = input("Ingresa el nombre del juego: ")
         if(name):
+            enviarDatos(sock, name,  "dvnor" )
             break
         else:
             print( "Debe completar la información solicitada")
             input(" presione [Enter] para continuar...")
-            os.system('clear')
-    enviarDatos(sock, name,  "dvnor" )
+
     
     serv, mensaje=escucharBus(sock)
     mensaje = mensaje.split('---')
@@ -101,10 +101,17 @@ def handleSecondOption():
     os.system('clear')
 
 def handleThirdOption(username):
-    os.system('clear')
-    print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
-    name = input("Ingresa el nombre del juego: ")
-    enviarDatos(sock, username+"--"+name,  "dvnac" )
+    while True:
+        os.system('clear')
+        print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
+        name = input("Ingresa el nombre del juego: ")
+        if(name):
+            enviarDatos(sock, username+"--"+name,  "dvnac" )
+            break
+        else:
+            print( "Debe completar la información solicitada")
+            input(" presione [Enter] para continuar...")
+
     serv, mensaje=escucharBus(sock)
     print(mensaje)
     input("presione [Enter] para continuar...")
@@ -121,20 +128,19 @@ def handleFourOption(username):
 
 
 def handleFiveOption(username):
-    os.system('clear')
-    print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
-    name = input("Ingresa el nombre del juego: ")
-    enviarDatos(sock, username+"--"+name,  "dvnec" )
+    while True:
+        os.system('clear')
+        print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
+        name = input("Ingresa el nombre del juego: ")
+        if(name):
+            enviarDatos(sock, username+"--"+name,  "dvnec" )
+            break
+        else:
+            print( "Debe completar la información solicitada")
+            input(" presione [Enter] para continuar...")
     serv, mensaje=escucharBus(sock)
-    # mensaje = mensaje.split('---')
-    # mensaje.pop(0) #elimina el OK
-    # table = PrettyTable()
-    # table.field_names = ["byUser", "Review","Stars"]
-    # for item in mensaje:
-    #     msg = item.split('--')
-    #     table.add_row([ msg[0], msg[1] , msg[2] ])
-    # print(table)
     print(mensaje)
+    
     input("presione [Enter] para continuar...")
     os.system('clear')
 
