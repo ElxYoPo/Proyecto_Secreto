@@ -99,7 +99,7 @@ def handleFourOption(username):
 
 def handleFiveOption(username):
     os.system('clear')
-    print("|============= Completa los campos =============|")
+    print("□□□□□□□□□□ Inicio sesión Usuario común □□□□□□□□□□")
     name = input("Ingresa el nombre del juego: ")
     enviarDatos(sock, username+"--"+name,  "dvnec" )
     serv, mensaje=escucharBus(sock)
