@@ -117,14 +117,17 @@ def handleFiveOption(username):
 
 def showMenuScreen():
     while True:
-        print("|=============== Menu de usuario ===============|")
-        print(" 1.- Realizar una resenha")
-        print(" 2.- Obtener resenha")
-        print(" 3.- Agregar juego a la coleccion")
-        print(" 4.- Consultar Coleccion")
-        print(" 5.- Eliminar juego de la coleccion")
-        print(" 6.- Salir")
-        select = input(" Opcion: ")
+        menu = """    
+        □□□□□□□□□□□□□□□□□ Usuario Común □□□□□□□□□□□□□□□□□
+        □ 1.- Realizar una reseña                       □
+        □ 2.- Obtener reseña                            □
+        □ 3.- Agregar juego a la colección              □
+        □ 4.- Consultar Colección                       □
+        □ 5.- Eliminar juego de la colección            □
+        □ 6.- Salir                                     □
+        □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□"""
+        print(menu)
+        select = input("Opción: ")
         if(select.isnumeric() and int(select)<=6):
             os.system('clear')
             break
