@@ -52,10 +52,10 @@ def showLoginScreen():
 def handleFirstOption(username):
     os.system('clear')
     print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
-    name = input("Ingresa el nombre del juego: ")
-    review = input("Ingresa tu resena: ")
-    stars = input("Ingresa cantidad de estrellas [0-10]: ")
     while True:
+        name = input("Ingresa el nombre del juego: ")
+        review = input("Ingresa tu resena: ")
+        stars = input("Ingresa cantidad de estrellas [0-10]: ")
         if(name and review and stars and stars.isdigit() and  0 <= int(stars) <= 10 ):
             enviarDatos(sock, username + "--" + name + "--" + review + "--" + stars, "dvnar" )
             serv, mensaje=escucharBus(sock)
