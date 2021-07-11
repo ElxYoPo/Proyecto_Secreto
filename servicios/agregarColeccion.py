@@ -19,14 +19,17 @@ def ingresarColeccion(registro):
     datos = registro.split("--")
     obtain = postcoleccion.find_one({"usuario": datos[0]})
     if obtain:
-        print(obtain["array"])
-        array = obtain["array"]
-        array.append(datos[1])
-        postcoleccion.update_one({"usuario": datos[0]},  {"$set" : {"array": array}} )
-        iniciarServicio(sock, "Insert realizado", "dvnac") #mandar msg confirmando el insert
+        if(obtain['array']):
+            # print(obtain["array"])
+            array = obtain["array"]
+            array.append(datos[1])
+            postcoleccion.update_one({"usuario": datos[0]},  {"$set" : {"array": array}} )
+            iniciarServicio(sock, "Juego agregado correctamente", "dvnac") #mandar msg confirmando el insert
+        else:
+            postcoleccion.insert_one({"usuario": datos[0], "array": [datos[1]]})
+            iniciarServicio(sock, "Juego agregado correctamente", "dvnac") #mandar msg confirmando el insert
     else:
-        postcoleccion.insert_one({"usuario": datos[0], "array": [datos[1]]})
-        iniciarServicio(sock, "Insert realizado", "dvnac") #mandar msg confirmando el insert
+        iniciarServicio(sock, "No se ha podido agregar", "dvnac") #mandar msg confirmando el insert
 
     # resp = postResena.find_one({"nombre": datos[1]})
     # print(resp)
