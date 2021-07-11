@@ -57,7 +57,8 @@ def handleFirstOption(username):
     stars = input("Ingresa cantidad de estrellas: ")
     enviarDatos(sock, username + "--" + name + "--" + review + "--" + stars, "dvnar" )
     serv, mensaje=escucharBus(sock)
-    input(f"{mensaje}, presione [Enter] para continuar...")
+    # input(f"{mensaje}, presione [Enter] para continuar...")
+    input("Presione [Enter] para continuar...")
     os.system('clear')
 
 def handleSecondOption():
