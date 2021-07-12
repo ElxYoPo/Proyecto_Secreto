@@ -125,8 +125,8 @@ def handleFourOption(username):
     serv, mensaje=escucharBus(sock)
     mensaje = mensaje.split("--")
     # mensaje.pop()
-    for item in mensaje:
-        print(f">{item}")
+    for i in range(1,len(mensaje)):
+        print(f"> {mensaje[i]}")
     input("presione [Enter] para continuar...")
     os.system('clear')
 
