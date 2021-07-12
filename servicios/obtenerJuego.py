@@ -22,7 +22,7 @@ def obtenerInfoJuego(registro):
         print(sendData)
         iniciarServicio(sock,sendData, "dvnoj") #mandar msg confirmando el insert
     else:
-        iniciarServicio(sock,"no se encuentra el juego", "dvnoj") #mandar msg confirmando el insert
+        iniciarServicio(sock,"--No se encuentra el juego", "dvnoj") #mandar msg confirmando el insert
 
 
 

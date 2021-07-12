@@ -162,7 +162,7 @@ def handleSixOption():
         table.add_row([ mensaje[1], mensaje[2] , mensaje[3], mensaje[4], mensaje[5] ])
         print(table)
     else:
-        print(mensaje[0])
+        print(mensaje[1])
     input("presione [Enter] para continuar...")
 
 def showMenuScreen():
