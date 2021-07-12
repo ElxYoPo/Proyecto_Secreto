@@ -21,7 +21,7 @@ def obtenerColeccion(registro):
         if(obtain['array']):
             output = obtain['array']
             output = "--".join(output)
-            iniciarServicio(sock,"--"+output, "dvnoc") #mandar msg confirmando el insert
+            iniciarServicio(sock,output, "dvnoc") #mandar msg confirmando el insert
         else:
             iniciarServicio(sock, "No existen coleccion de juegos para este usuario", "dvnoc") #mandar msg confirmando el insert
     else:
