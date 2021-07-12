@@ -123,7 +123,7 @@ def handleFourOption(username):
     print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
     enviarDatos(sock, username,  "dvnoc" )
     serv, mensaje=escucharBus(sock)
-    # mensaje = mensaje.split("--")
+    mensaje = mensaje.split("--")
     # mensaje.pop()
     for item in mensaje:
         print(f">{item}")
