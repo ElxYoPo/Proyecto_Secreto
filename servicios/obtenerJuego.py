@@ -18,7 +18,7 @@ def iniciarServicio(sock,contenido, servicio):
 def obtenerInfoJuego(registro):
     obtain = postJuego.find_one({"nombre": registro})
     if obtain:
-        sendData = obtain["nombre"]+"--"+obtain["publisher"]+"--"+obtain["desarrolladora"]+"--"+obtain["plataforma"]+"--"+obtain["genero"]
+        sendData = "--"+obtain["nombre"]+"--"+obtain["publisher"]+"--"+obtain["desarrolladora"]+"--"+obtain["plataforma"]+"--"+obtain["genero"]
         print(sendData)
         iniciarServicio(sock,sendData, "dvnoj") #mandar msg confirmando el insert
     else:
