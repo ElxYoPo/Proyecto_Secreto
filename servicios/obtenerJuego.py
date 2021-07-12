@@ -17,6 +17,8 @@ def iniciarServicio(sock,contenido, servicio):
     
 def obtenerInfoJuego(registro):
     obtain = postJuego.find_one({"nombre": registro})
+    obs = postJuego.find({"nombre": {f"$eq:{registro}"}})
+    print(obs)
     if obtain:
         sendData = "--"+obtain["nombre"]+"--"+obtain["publisher"]+"--"+obtain["desarrolladora"]+"--"+obtain["plataforma"]+"--"+obtain["genero"]
         print(sendData)
