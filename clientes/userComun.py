@@ -125,8 +125,11 @@ def handleFourOption(username):
     serv, mensaje=escucharBus(sock)
     mensaje = mensaje.split("--")
     # mensaje.pop()
-    for i in range(1,len(mensaje)):
-        print(f"> {mensaje[i]}")
+    if(mensaje[1] == "No existen coleccion de juegos para este usuario"):
+        print(mensaje[1])
+    else:
+        for i in range(1,len(mensaje)):
+            print(f"> {mensaje[i]}")
     input("presione [Enter] para continuar...")
     os.system('clear')
 
