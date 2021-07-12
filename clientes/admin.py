@@ -126,7 +126,7 @@ def handleFourthOption(username):
     while confirma.upper() != "Y" and confirma.upper() != "N":
         confirma = input("Teclee \"Y\" para confirmar la accion y \"N\" para abortarla... ")
     if confirma.upper() == "Y":
-        enviarDatos(sock, name, "dvndc" )
+        enviarDatos(sock, name, "dvnrc" )
         serv, mensaje=escucharBus(sock)
         if mensaje.endswith("Error"):
             input("Ha ocurrido un error inesperado, presione [Enter] para continuar...")
