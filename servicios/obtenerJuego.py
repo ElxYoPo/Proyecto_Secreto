@@ -57,7 +57,7 @@ if __name__ == "__main__":
         serv, msg=escucharBus(sock) # editar func
         print(serv, msg)
         if serv == "dvnoj":
-            ingresarJuego(msg) # editar func
+            obtenerInfoJuego(msg) # editar func
 
     print('Cerrando conexión')
     sock.close()
