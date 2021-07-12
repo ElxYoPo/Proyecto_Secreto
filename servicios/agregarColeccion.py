@@ -26,7 +26,7 @@ def ingresarColeccion(registro):
             postcoleccion.update_one({"usuario": datos[0]},  {"$set" : {"array": array}} )
             iniciarServicio(sock, "Juego agregado correctamente", "dvnac") #mandar msg confirmando el insert
         else:
-            postcoleccion.update_one({"usuario": datos[0]},  {"$set" : {"array": [datos[0]]}} )
+            postcoleccion.update_one({"usuario": datos[0]},  {"$set" : {"array": [datos[1]]}} )
             iniciarServicio(sock, "Juego agregado correctamente", "dvnac") #mandar msg confirmando el insert
     else:
         postcoleccion.insert_one({"usuario": datos[0], "array": [datos[1]]})
