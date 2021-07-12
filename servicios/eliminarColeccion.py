@@ -19,7 +19,7 @@ def eliminarColeccion(registro):
     datos = registro.split("--")
     obtain = postcoleccion.find_one({"usuario": datos[0]})
     
-    if obtain['array']:
+    if (obtain['array'] and datos[1] in obtain['array']):
         print(obtain["array"])
         array = list(obtain["array"])
         array.remove(datos[1])
