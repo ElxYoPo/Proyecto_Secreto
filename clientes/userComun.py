@@ -35,22 +35,25 @@ def escucharBus(sock):
 
 def showLoginScreen():
     while True:
-        os.system('clear')
         print("□□□□□□□□□□ Inicio sesión Usuario común □□□□□□□□□□")
         user = input("Usuario: ")
         password = getpass.getpass("Contrasenha: ")
         print(f"prueba usuario: {user} password: {password}")
         os.system('clear')
-
         enviarDatos(sock, user + " " + password, "dvnli" )
         serv, mensaje=escucharBus(sock)
         print(mensaje)
         if mensaje.endswith("NoUser") or mensaje.endswith("NoPass"):
             input("Usuario o contrasenha incorrectos. Pulse cualquier tecla para continuar")
+            showLoginScreen()
         elif mensaje.endswith("NoActive"):
             input("Esta cuenta no se encuentra activa. Pulse cualquier tecla para continuar")
+            showLoginScreen()
         elif mensaje.endswith("admin"):
             input("Esta cuenta corresponde al rol de administrador y no puede acceder a este menu. Pulse cualquier tecla para continuar")
+            showLoginScreen()
+        else:
+            break
         os.system('clear')
     return user
 
