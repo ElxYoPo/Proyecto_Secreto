@@ -28,9 +28,9 @@ def ingresarColeccion(registro):
         else:
             postcoleccion.insert_one({"usuario": datos[0], "array": [datos[1]]})
             iniciarServicio(sock, "Juego agregado correctamente", "dvnac") #mandar msg confirmando el insert
-
     else:
-        iniciarServicio(sock, "No se ha podido agregar", "dvnac") #mandar msg confirmando el insert
+        postcoleccion.insert_one({"usuario": datos[0], "array": [datos[1]]})
+        iniciarServicio(sock, "Juego agregado correctamente", "dvnac") #mandar msg confirmando el insert
 
     # resp = postResena.find_one({"nombre": datos[1]})
     # print(resp)
