@@ -24,7 +24,10 @@ def reactivarUser(registro):
         print("el user es admin")
         iniciarServicio(sock, "Admin", "dvnrc")
     elif usuarito["rol"] == "comun": 
-        if usuarito["activo"] is False:
+        if usuarito["activo"] is True:
+            print("Esta activo el usuario")
+            iniciarServicio(sock, "NoDeac", "dvnrc")
+        elif usuarito["activo"] is False:
             postUsers.replace_one({"usuario": registro}, {"usuario": registro, "password": usuarito["password"], "rol": usuarito["rol"], "activo": True})
             usuarito = postUsers.find_one({"usuario": registro})
             if usuarito["activo"] is False:
@@ -33,9 +36,6 @@ def reactivarUser(registro):
             else:
                 print("usuario reactivado")
                 iniciarServicio(sock, "Se reactivo el usuario correctamente", "dvnrc")
-        elif usuarito["activo"] is True:
-            print("Esta activo el usuario")
-            iniciarServicio(sock, "NoDeac", "dvnrc")
         else:
             print("No se leyo bien el estado")
             iniciarServicio(sock, "Error", "dvnrc")

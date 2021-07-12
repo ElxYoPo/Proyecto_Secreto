@@ -121,8 +121,8 @@ def handleThirdOption(username):
 def handleFourthOption(username):
     os.system('clear')
     print("|============= Complete los campos =============|")
-    name = input("Ingrese el nombre de usuario a desactivar: ")
-    confirma = input(f"Seguro que quiere desactivar {name}? Y/N... ")
+    name = input("Ingrese el nombre de usuario a reactivar: ")
+    confirma = input(f"Seguro que quiere reactivar {name}? Y/N... ")
     while confirma.upper() != "Y" and confirma.upper() != "N":
         confirma = input("Teclee \"Y\" para confirmar la accion y \"N\" para abortarla... ")
     if confirma.upper() == "Y":
