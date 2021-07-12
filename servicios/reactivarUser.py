@@ -25,7 +25,8 @@ def reactivarUser(registro):
         iniciarServicio(sock, "Admin", "dvnrc")
     else: 
         if usuarito["activo"] is False:
-            postUsers.update({"usuario": registro}, {"activo": True})
+            postUsers.replace_one({"usuario": registro}, {"usuario": registro, "password": usuarito["password"], "rol": usuarito["rol"], "activo": True})
+            usuarito = postUsers.find_one({"usuario": registro})
             if usuarito["activo"] is False:
                 print("no se reactivo")
                 iniciarServicio(sock, "Error", "dvnrc")

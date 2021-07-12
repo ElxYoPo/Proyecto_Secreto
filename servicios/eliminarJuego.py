@@ -15,7 +15,7 @@ def iniciarServicio(sock,contenido, servicio):
     sock.sendall(transaccion.encode())
     #00010sinitdvnac seguir editando xd
     
-def ingresarJuego(registro):
+def eliminarJuego(registro):
     if not postJuego.find_one({"nombre": registro}):
         print("el juego no existe")
         iniciarServicio(sock, "NoJuego", "dvnej")
@@ -25,23 +25,7 @@ def ingresarJuego(registro):
             print("No se elimino el juego")
             iniciarServicio(sock, "NoDeleted", "dvnej")
         else:
-            iniciarServicio(sock, "Se elimino el juego exitosamente", "dvnaj")
-    # if agregar:
-    #     if(obtain['array']):
-    #         # print(obtain["array"])
-    #         array = obtain["array"]
-    #         array.append(datos[1])
-    #         postJuego.update_one({"usuario": datos[0]},  {"$set" : {"array": array}} )
-    #         iniciarServicio(sock, "Juego agregado correctamente", "dvnac") #mandar msg confirmando el insert
-    #     else:
-    #         postJuego.insert_one({"usuario": datos[0], "array": [datos[1]]})
-    #         iniciarServicio(sock, "Juego agregado correctamente", "dvnac") #mandar msg confirmando el insert
-    # else:
-    #     iniciarServicio(sock, "No se ha podido agregar", "dvnac") #mandar msg confirmando el insert
-
-    # resp = postResena.find_one({"nombre": datos[1]})
-    # print(resp)
-    # iniciarServicio(sock, "Insert realizado", "dvnac") #mandar msg confirmando el insert
+            iniciarServicio(sock, "Se elimino el juego exitosamente", "dvnej")
 
 def escucharBus(sock):
     cantidadRecibida = 0
@@ -76,7 +60,7 @@ if __name__ == "__main__":
         serv, msg=escucharBus(sock) # editar func
         print(serv, msg)
         if serv == "dvnej":
-            ingresarJuego(msg) # editar func
+            eliminarJuego(msg) # editar func
 
     print('Cerrando conexión')
     sock.close()

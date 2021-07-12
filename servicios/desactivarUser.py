@@ -25,7 +25,8 @@ def desactivarUser(registro):
         iniciarServicio(sock, "Admin", "dvndc")
     else: 
         if usuarito["activo"] is True:
-            postUsers.update({"usuario": registro}, {"activo": False})
+            postUsers.replace_one({"usuario": registro}, {"usuario": registro, "password": usuarito["password"], "rol": usuarito["rol"], "activo": False})
+            usuarito = postUsers.find_one({"usuario": registro})
             if usuarito["activo"] is True:
                 print("no se desactivo")
                 iniciarServicio(sock, "Error", "dvndc")

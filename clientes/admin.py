@@ -93,9 +93,9 @@ def handleThirdOption(username):
     os.system('clear')
     print("|============= Complete los campos =============|")
     name = input("Ingrese el nombre de usuario a desactivar: ")
-    confirma = input(f"Seguro que quiere desactivar {name}? Y/N")
+    confirma = input(f"Seguro que quiere desactivar {name}? Y/N... ")
     while confirma.upper() != "Y" and confirma.upper() != "N":
-        confirma = input("Teclee \"Y\" para confirmar la accion y \"N\" para abortarla")
+        confirma = input("Teclee \"Y\" para confirmar la accion y \"N\" para abortarla... ")
     if confirma.upper() == "Y":
         enviarDatos(sock, name, "dvndc" )
         serv, mensaje=escucharBus(sock)
@@ -122,9 +122,9 @@ def handleFourthOption(username):
     os.system('clear')
     print("|============= Complete los campos =============|")
     name = input("Ingrese el nombre de usuario a desactivar: ")
-    confirma = input(f"Seguro que quiere desactivar {name}? Y/N")
+    confirma = input(f"Seguro que quiere desactivar {name}? Y/N... ")
     while confirma.upper() != "Y" and confirma.upper() != "N":
-        confirma = input("Teclee \"Y\" para confirmar la accion y \"N\" para abortarla")
+        confirma = input("Teclee \"Y\" para confirmar la accion y \"N\" para abortarla... ")
     if confirma.upper() == "Y":
         enviarDatos(sock, name, "dvndc" )
         serv, mensaje=escucharBus(sock)
