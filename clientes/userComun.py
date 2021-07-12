@@ -52,8 +52,9 @@ def showLoginScreen():
     elif mensaje.endswith("admin"):
         input("Esta cuenta corresponde al rol de administrador y no puede acceder a este menu. Pulse cualquier tecla para continuar")
         showLoginScreen()
-    os.system('clear')
-    return user
+    else:
+        os.system('clear')
+        return user
 
 def handleFirstOption(username):
 
