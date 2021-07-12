@@ -172,7 +172,7 @@ def showMenuScreen():
 □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□"""
         print(menu)
         select = input("Opción: ")
-        if(select.isnumeric() and int(select)<=6):
+        if(select.isnumeric() and int(select)<=7):
             os.system('clear')
             break
         else:
