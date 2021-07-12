@@ -17,6 +17,8 @@ def iniciarServicio(sock,contenido, servicio):
     
 def obtenerInfoJuego(registro):
     obtain = postJuego.find_one({"nombre": registro})
+    print(registro)
+    print(obtain)
     if obtain:
         sendData = "--".join(obtain)
         print(sendData)
