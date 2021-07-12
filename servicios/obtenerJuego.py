@@ -17,12 +17,12 @@ def iniciarServicio(sock,contenido, servicio):
     
 def obtenerInfoJuego(registro):
     obtain = postJuego.find_one({"nombre": registro})
-    print(registro)
-    print(obtain)
     if obtain:
-        sendData = "--".join(obtain)
+        sendData = obtain["nombre"]+"--"+obtain["publisher"]+"--"+obtain["desarroladora"]+"--"+obtain["plataforma"]+"--"+obtain["genero"]
         print(sendData)
-        # iniciarServicio(sock,, "dvnoc") #mandar msg confirmando el insert
+        iniciarServicio(sock,sendData, "dvnoj") #mandar msg confirmando el insert
+    else:
+        iniciarServicio(sock,"no se encuentra el juego", "dvnoj") #mandar msg confirmando el insert
 
 
 

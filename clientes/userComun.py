@@ -115,7 +115,6 @@ def handleThirdOption(username):
     serv, mensaje=escucharBus(sock)
     print(mensaje)
     input("presione [Enter] para continuar...")
-    os.system('clear')
 
 def handleFourOption(username):
     os.system('clear')
@@ -142,7 +141,22 @@ def handleFiveOption(username):
     print(mensaje)
     
     input("presione [Enter] para continuar...")
-    os.system('clear')
+
+
+def handleSixOption():
+    while True:
+        os.system('clear')
+        print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
+        name = input("Ingresa el nombre del juego: ")
+        if(name):
+            enviarDatos(sock, name,  "dvnoj" )
+            break
+        else:
+            print( "Debe completar la información solicitada")
+            input(" presione [Enter] para continuar...")
+    serv, mensaje=escucharBus(sock)
+    print(mensaje)
+    input("presione [Enter] para continuar...")
 
 def showMenuScreen():
     while True:
@@ -153,7 +167,8 @@ def showMenuScreen():
 □ 3.- Agregar juego a la colección              □
 □ 4.- Consultar Colección                       □
 □ 5.- Eliminar juego de la colección            □
-□ 6.- Salir                                     □
+□ 6.- Obtener información de un juego           □
+□ 7.- Salir                                     □
 □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□"""
         print(menu)
         select = input("Opción: ")
@@ -184,6 +199,8 @@ def handleUserParams():
             handleFiveOption(username)
             os.system('clear')
         elif(select == 6):
+            handleSixOption()
+        elif(select == 7):
             break
 
 if __name__ == "__main__":
