@@ -65,6 +65,12 @@ def handleFirstOption(username):
     genero = input("Ingrese el genero asociado al juego: ")
     enviarDatos(sock, name + "--" + publisher + "--" + desarrolladora + "--" + plataforma + "--" + genero, "dvnaj" )
     serv, mensaje=escucharBus(sock)
+    if mensaje.endswith("AlreadyExists"):
+        input("El juego ya existe en la base de datos. Presione [Enter] para continuar...")
+        os.system('clear')
+    elif mensaje.endswith("NoAdded"):
+        input("Hubo un error al agregar el juego. Presione [Enter] para continuar...")
+        os.system('clear')
     input(f"{mensaje}, presione [Enter] para continuar...")
     os.system('clear')
 
@@ -74,6 +80,12 @@ def handleSecondOption():
     name = input("Ingrese el nombre del juego: ")
     enviarDatos(sock, name,  "dvnej" )
     serv, mensaje=escucharBus(sock)
+    if mensaje.endswith("NoJuego"):
+        input("El juego no existe o se ha eliminado previamente de la base de datos. Presione [Enter] para continuar...")
+        os.system('clear')
+    elif mensaje.endswith("NoDeleted"):
+        input("Hubo un error al eliminar el juego. Presione [Enter] para continuar...")
+        os.system('clear')
     input(f"{mensaje}, presione [Enter] para continuar...")
     os.system('clear')
 
@@ -87,8 +99,21 @@ def handleThirdOption(username):
     if confirma.upper() == "Y":
         enviarDatos(sock, name, "dvndc" )
         serv, mensaje=escucharBus(sock)
-        input(f"{mensaje}, presione [Enter] para continuar...")
-        os.system('clear')
+        if mensaje.endswith("Error"):
+            input("Ha ocurrido un error inesperado, presione [Enter] para continuar...")
+            os.system('clear')
+        elif mensaje.endswith("NoUser"):
+            input("No se ha encontrado al usuario especificado, presione [Enter] para continuar...")
+            os.system('clear')
+        elif mensaje.endswith("Admin"):
+            input("No puede activar o desactivar un usuario administrador o a si mismo, presione [Enter] para continuar...")
+            os.system('clear')
+        elif mensaje.endswith("SiDeac"):
+            input("El usuario especificado ya esta desactivado, presione [Enter] para continuar...")
+            os.system('clear')
+        else:
+            input(f"{mensaje}, presione [Enter] para continuar...")
+            os.system('clear')
     elif confirma.upper() == "N":
         input("Se ha abortado la acción, presione [Enter] para continuar...")
         os.system('clear')
@@ -96,15 +121,28 @@ def handleThirdOption(username):
 def handleFourthOption(username):
     os.system('clear')
     print("|============= Complete los campos =============|")
-    name = input("Ingrese el nombre de usuario a reactivar: ")
-    confirma = input(f"Seguro que quiere reactivar {name}? Y/N")
+    name = input("Ingrese el nombre de usuario a desactivar: ")
+    confirma = input(f"Seguro que quiere desactivar {name}? Y/N")
     while confirma.upper() != "Y" and confirma.upper() != "N":
         confirma = input("Teclee \"Y\" para confirmar la accion y \"N\" para abortarla")
     if confirma.upper() == "Y":
         enviarDatos(sock, name, "dvndc" )
         serv, mensaje=escucharBus(sock)
-        input(f"{mensaje}, presione [Enter] para continuar...")
-        os.system('clear')
+        if mensaje.endswith("Error"):
+            input("Ha ocurrido un error inesperado, presione [Enter] para continuar...")
+            os.system('clear')
+        elif mensaje.endswith("NoUser"):
+            input("No se ha encontrado al usuario especificado, presione [Enter] para continuar...")
+            os.system('clear')
+        elif mensaje.endswith("Admin"):
+            input("No puede activar o desactivar un usuario administrador o a si mismo, presione [Enter] para continuar...")
+            os.system('clear')
+        elif mensaje.endswith("NoDeac"):
+            input("El usuario especificado ya esta desactivado, presione [Enter] para continuar...")
+            os.system('clear')
+        else:
+            input(f"{mensaje}, presione [Enter] para continuar...")
+            os.system('clear')
     elif confirma.upper() == "N":
         input("Se ha abortado la acción, presione [Enter] para continuar...")
         os.system('clear')

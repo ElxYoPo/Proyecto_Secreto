@@ -1,10 +1,10 @@
 import socket
 import socket, sys, json
 from typing import Counter
-from mongotest import post_juegos
+from mongotest import get_database
 import json
 
-postJuego = post_juegos()
+postUsers = get_database()
 
 def iniciarServicio(sock,contenido, servicio):
     #construccion de la transaccion
@@ -15,34 +15,29 @@ def iniciarServicio(sock,contenido, servicio):
     sock.sendall(transaccion.encode())
     #00010sinitdvnac seguir editando xd
     
-def ingresarJuego(registro):
-    datos = registro.split("--")
-    if postJuego.find_one({"nombre": datos[0]}):
-        print("el juego ya existe")
-        iniciarServicio(sock, "AlreadyExists", "dvnaj")
+def reactivarUser(registro):
+    usuarito = postUsers.find_one({"usuario": registro})
+    if not usuarito:
+        print("el usuario no existe")
+        iniciarServicio(sock, "NoUser", "dvnrc")
+    elif usuarito["rol"] is "admin":
+        print("el user es admin")
+        iniciarServicio(sock, "Admin", "dvnrc")
     else: 
-        agregar = postJuego.insert_one({"nombre": datos[0], "publisher": datos[1], "desarrolladora": datos[2], "plataforma": datos[3], "genero": datos[4]})
-        print(agregar)
-        if postJuego.find_one({"nombre": datos[0]}):
-            iniciarServicio(sock, "Se ha agregado el juego exitosamente", "dvnaj")
+        if usuarito["activo"] is False:
+            postUsers.update({"usuario": registro}, {"activo": True})
+            if usuarito["activo"] is False:
+                print("no se reactivo")
+                iniciarServicio(sock, "Error", "dvnrc")
+            else:
+                print("usuario reactivado")
+                iniciarServicio(sock, "Se reactivo el usuario correctamente", "dvnrc")
+        elif usuarito["activo"] is True:
+            print("Esta activo el usuario")
+            iniciarServicio(sock, "NoDeac", "dvnrc")
         else:
-            iniciarServicio(sock, "NoAdded", "dvnaj")
-    # if agregar:
-    #     if(obtain['array']):
-    #         # print(obtain["array"])
-    #         array = obtain["array"]
-    #         array.append(datos[1])
-    #         postJuego.update_one({"usuario": datos[0]},  {"$set" : {"array": array}} )
-    #         iniciarServicio(sock, "Juego agregado correctamente", "dvnac") #mandar msg confirmando el insert
-    #     else:
-    #         postJuego.insert_one({"usuario": datos[0], "array": [datos[1]]})
-    #         iniciarServicio(sock, "Juego agregado correctamente", "dvnac") #mandar msg confirmando el insert
-    # else:
-    #     iniciarServicio(sock, "No se ha podido agregar", "dvnac") #mandar msg confirmando el insert
-
-    # resp = postResena.find_one({"nombre": datos[1]})
-    # print(resp)
-    # iniciarServicio(sock, "Insert realizado", "dvnac") #mandar msg confirmando el insert
+            print("No se leyo bien el estado")
+            iniciarServicio(sock, "Error", "dvnrc")
 
 def escucharBus(sock):
     cantidadRecibida = 0
@@ -66,7 +61,7 @@ if __name__ == "__main__":
         print("No se ha podido establecer la conexión")
         quit() 
 
-    iniciarServicio(sock, "dvnaj","sinit")
+    iniciarServicio(sock, "dvnrc","sinit")
     serv, msg = escucharBus(sock)
     if serv =="sinit" and msg[:2]=="OK":
         print("Servicio: Servicio iniciado con exito")
@@ -76,8 +71,8 @@ if __name__ == "__main__":
     while True:
         serv, msg=escucharBus(sock) # editar func
         print(serv, msg)
-        if serv == "dvnaj":
-            ingresarJuego(msg) # editar func
+        if serv == "dvnrc":
+            reactivarUser(msg) # editar func
 
     print('Cerrando conexión')
     sock.close()

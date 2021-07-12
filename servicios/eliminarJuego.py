@@ -16,17 +16,16 @@ def iniciarServicio(sock,contenido, servicio):
     #00010sinitdvnac seguir editando xd
     
 def ingresarJuego(registro):
-    datos = registro.split("--")
-    if postJuego.find_one({"nombre": datos[0]}):
-        print("el juego ya existe")
-        iniciarServicio(sock, "AlreadyExists", "dvnaj")
+    if not postJuego.find_one({"nombre": registro}):
+        print("el juego no existe")
+        iniciarServicio(sock, "NoJuego", "dvnej")
     else: 
-        agregar = postJuego.insert_one({"nombre": datos[0], "publisher": datos[1], "desarrolladora": datos[2], "plataforma": datos[3], "genero": datos[4]})
-        print(agregar)
-        if postJuego.find_one({"nombre": datos[0]}):
-            iniciarServicio(sock, "Se ha agregado el juego exitosamente", "dvnaj")
+        postJuego.delete_one({"nombre": registro})
+        if postJuego.find_one({"nombre": registro}):
+            print("No se elimino el juego")
+            iniciarServicio(sock, "NoDeleted", "dvnej")
         else:
-            iniciarServicio(sock, "NoAdded", "dvnaj")
+            iniciarServicio(sock, "Se elimino el juego exitosamente", "dvnaj")
     # if agregar:
     #     if(obtain['array']):
     #         # print(obtain["array"])
@@ -66,7 +65,7 @@ if __name__ == "__main__":
         print("No se ha podido establecer la conexión")
         quit() 
 
-    iniciarServicio(sock, "dvnaj","sinit")
+    iniciarServicio(sock, "dvnej","sinit")
     serv, msg = escucharBus(sock)
     if serv =="sinit" and msg[:2]=="OK":
         print("Servicio: Servicio iniciado con exito")
@@ -76,7 +75,7 @@ if __name__ == "__main__":
     while True:
         serv, msg=escucharBus(sock) # editar func
         print(serv, msg)
-        if serv == "dvnaj":
+        if serv == "dvnej":
             ingresarJuego(msg) # editar func
 
     print('Cerrando conexión')
