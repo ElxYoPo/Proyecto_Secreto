@@ -155,6 +155,12 @@ def handleSixOption():
             print( "Debe completar la información solicitada")
             input(" presione [Enter] para continuar...")
     serv, mensaje=escucharBus(sock)
+    table = PrettyTable()
+    table.field_names = ["Nombre", "Publisher","Desarroladora", "Plataforma", "Genero"]
+    mensaje = mensaje.split('--')
+    table.add_row([ mensaje[0], mensaje[1] , mensaje[2], mensaje[3], mensaje[4] ])
+
+    
     print(mensaje)
     input("presione [Enter] para continuar...")
 
