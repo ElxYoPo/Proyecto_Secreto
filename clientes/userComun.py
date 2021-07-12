@@ -34,6 +34,7 @@ def escucharBus(sock):
         return nombreServicio, msgTransaccion
 
 def showLoginScreen():
+<<<<<<< HEAD
     print("□□□□□□□□□□ Inicio sesión Usuario común □□□□□□□□□□")
     user = input("Usuario: ")
     password = getpass.getpass("Contrasenha: ")
@@ -55,6 +56,30 @@ def showLoginScreen():
     else:
         os.system('clear')
         return user
+=======
+    while True:
+        print("□□□□□□□□□□ Inicio sesión Usuario común □□□□□□□□□□")
+        user = input("Usuario: ")
+        password = getpass.getpass("Contrasenha: ")
+        print(f"prueba usuario: {user} password: {password}")
+        os.system('clear')
+        enviarDatos(sock, user + " " + password, "dvnli" )
+        serv, mensaje=escucharBus(sock)
+        print(mensaje)
+        if mensaje.endswith("NoUser") or mensaje.endswith("NoPass"):
+            input("Usuario o contrasenha incorrectos. Pulse cualquier tecla para continuar")
+            showLoginScreen()
+        elif mensaje.endswith("NoActive"):
+            input("Esta cuenta no se encuentra activa. Pulse cualquier tecla para continuar")
+            showLoginScreen()
+        elif mensaje.endswith("admin"):
+            input("Esta cuenta corresponde al rol de administrador y no puede acceder a este menu. Pulse cualquier tecla para continuar")
+            showLoginScreen()
+        else:
+            break
+        os.system('clear')
+    return user
+>>>>>>> 6eca0bce1cd5fdaf4063e31dee01a32b378c995c
 
 def handleFirstOption(username):
 
@@ -73,6 +98,7 @@ def handleFirstOption(username):
         else:
             print(" Verifique los datos ingresados")
             input(" presione [Enter] para continuar...")
+    os.system('clear')
 
 
 
@@ -116,13 +142,20 @@ def handleThirdOption(username):
     serv, mensaje=escucharBus(sock)
     print(mensaje)
     input("presione [Enter] para continuar...")
+    os.system('clear')
 
 def handleFourOption(username):
     os.system('clear')
     print("□□□□□□□□□□ Completa los campos □□□□□□□□□□□□□□")
     enviarDatos(sock, username,  "dvnoc" )
     serv, mensaje=escucharBus(sock)
-    print(mensaje)
+    mensaje = mensaje.split("--")
+    # mensaje.pop()
+    if(mensaje[1] == "No existen coleccion de juegos para este usuario"):
+        print(mensaje[1])
+    else:
+        for i in range(1,len(mensaje)):
+            print(f"> {mensaje[i]}")
     input("presione [Enter] para continuar...")
     os.system('clear')
 
@@ -142,6 +175,7 @@ def handleFiveOption(username):
     print(mensaje)
     
     input("presione [Enter] para continuar...")
+    os.system('clear')
 
 
 def handleSixOption():
@@ -159,12 +193,13 @@ def handleSixOption():
     table = PrettyTable()
     table.field_names = ["Nombre", "Publisher","Desarroladora", "Plataforma", "Genero"]
     mensaje = mensaje.split('--')
-    if(mensaje[0] == "OK"):
-        table.add_row([ mensaje[1], mensaje[2] , mensaje[3], mensaje[4], mensaje[5] ])
-        print(table)
+    if(mensaje[1] == "No se encuentra el juego"):
+        print(mensaje[1])
     else:
-        print(mensaje)
+        table.add_row([ mensaje[1], mensaje[2] , mensaje[3], mensaje[4], mensaje[5] ])
+        print(table)        
     input("presione [Enter] para continuar...")
+    os.system('clear')
 
 def showMenuScreen():
     while True:
@@ -207,6 +242,7 @@ def handleUserParams():
             handleFiveOption(username)
             os.system('clear')
         elif(select == 6):
+            os.system('clear')
             handleSixOption()
         elif(select == 7):
             break

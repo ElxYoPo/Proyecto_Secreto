@@ -19,7 +19,7 @@ def eliminarColeccion(registro):
     datos = registro.split("--")
     obtain = postcoleccion.find_one({"usuario": datos[0]})
     
-    if obtain['array']:
+    if (obtain['array'] and datos[1] in obtain['array']):
         print(obtain["array"])
         array = list(obtain["array"])
         array.remove(datos[1])
@@ -27,7 +27,7 @@ def eliminarColeccion(registro):
         postcoleccion.update_one({"usuario": datos[0]},  {"$set" : {"array": array}} )
         iniciarServicio(sock, "Juego eliminado correctamente", "dvnec") #mandar msg confirmando el insert
     else:
-        iniciarServicio(sock, "No se ha podido eliminar", "dvnac") #mandar msg confirmando el insert
+        iniciarServicio(sock, "No se ha podido eliminar", "dvnec") #mandar msg confirmando el insert
 
 
 
