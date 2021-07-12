@@ -210,6 +210,7 @@ def handleUserParams():
             handleFiveOption(username)
             os.system('clear')
         elif(select == 6):
+            os.system('clear')
             handleSixOption()
         elif(select == 7):
             break
