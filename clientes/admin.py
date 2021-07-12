@@ -179,7 +179,7 @@ def handleUserParams():
             handleThirdOption(username)
             os.system('clear')
         elif(select == 4):
-            handleThirdOption(username)
+            handleFourthOption(username)
             os.system('clear')
         elif(select == 5):
             break

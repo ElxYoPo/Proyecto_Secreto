@@ -23,7 +23,7 @@ def reactivarUser(registro):
     elif usuarito["rol"] is "admin":
         print("el user es admin")
         iniciarServicio(sock, "Admin", "dvnrc")
-    else: 
+    elif usuarito["rol"] == "comun": 
         if usuarito["activo"] is False:
             postUsers.replace_one({"usuario": registro}, {"usuario": registro, "password": usuarito["password"], "rol": usuarito["rol"], "activo": True})
             usuarito = postUsers.find_one({"usuario": registro})

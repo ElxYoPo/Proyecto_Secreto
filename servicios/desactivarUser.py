@@ -20,20 +20,20 @@ def desactivarUser(registro):
     if not usuarito:
         print("el usuario no existe")
         iniciarServicio(sock, "NoUser", "dvndc")
-    elif usuarito["rol"] is "admin":
+    elif usuarito["rol"] == "admin":
         print("el user es admin")
         iniciarServicio(sock, "Admin", "dvndc")
-    else: 
-        if usuarito["activo"] is True:
+    elif usuarito["rol"] == "comun": 
+        if usuarito["activo"] == True:
             postUsers.replace_one({"usuario": registro}, {"usuario": registro, "password": usuarito["password"], "rol": usuarito["rol"], "activo": False})
             usuarito = postUsers.find_one({"usuario": registro})
-            if usuarito["activo"] is True:
+            if usuarito["activo"] == True:
                 print("no se desactivo")
                 iniciarServicio(sock, "Error", "dvndc")
             else:
                 print("usuario desactivado")
                 iniciarServicio(sock, "Se desactivo el usuario correctamente", "dvndc")
-        elif usuarito["activo"] is False:
+        elif usuarito["activo"] == False:
             print("Esta desactivado el usuario")
             iniciarServicio(sock, "SiDeac", "dvndc")
         else:
