@@ -158,6 +158,7 @@ def handleSixOption():
     table = PrettyTable()
     table.field_names = ["Nombre", "Publisher","Desarroladora", "Plataforma", "Genero"]
     mensaje = mensaje.split('--')
+    print(mensaje)
     if(mensaje[0] == "OK"):
         table.add_row([ mensaje[1], mensaje[2] , mensaje[3], mensaje[4], mensaje[5] ])
         print(table)
