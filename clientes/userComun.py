@@ -158,9 +158,8 @@ def handleSixOption():
     table = PrettyTable()
     table.field_names = ["Nombre", "Publisher","Desarroladora", "Plataforma", "Genero"]
     mensaje = mensaje.split('--')
-    print(mensaje)
     if(mensaje[1] == "No se encuentra el juego"):
-        print(mensaje)
+        print(mensaje[1])
     else:
         table.add_row([ mensaje[1], mensaje[2] , mensaje[3], mensaje[4], mensaje[5] ])
         print(table)        
