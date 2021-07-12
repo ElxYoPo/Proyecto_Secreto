@@ -159,7 +159,7 @@ def handleSixOption():
     table.field_names = ["Nombre", "Publisher","Desarroladora", "Plataforma", "Genero"]
     mensaje = mensaje.split('--')
     table.add_row([ mensaje[0], mensaje[1] , mensaje[2], mensaje[3], mensaje[4] ])
-
+    print(table)
     
     print(mensaje)
     input("presione [Enter] para continuar...")
