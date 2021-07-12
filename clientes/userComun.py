@@ -72,6 +72,7 @@ def handleFirstOption(username):
         else:
             print(" Verifique los datos ingresados")
             input(" presione [Enter] para continuar...")
+    os.system('clear')
 
 
 
@@ -115,6 +116,7 @@ def handleThirdOption(username):
     serv, mensaje=escucharBus(sock)
     print(mensaje)
     input("presione [Enter] para continuar...")
+    os.system('clear')
 
 def handleFourOption(username):
     os.system('clear')
@@ -141,6 +143,7 @@ def handleFiveOption(username):
     print(mensaje)
     
     input("presione [Enter] para continuar...")
+    os.system('clear')
 
 
 def handleSixOption():
@@ -164,6 +167,7 @@ def handleSixOption():
         table.add_row([ mensaje[1], mensaje[2] , mensaje[3], mensaje[4], mensaje[5] ])
         print(table)        
     input("presione [Enter] para continuar...")
+    os.system('clear')
 
 def showMenuScreen():
     while True:
