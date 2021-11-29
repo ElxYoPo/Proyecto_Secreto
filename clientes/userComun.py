@@ -39,7 +39,6 @@ def showLoginScreen():
     password = getpass.getpass("Contrasenha: ")
     print(f"prueba usuario: {user} password: {password}")
     os.system('clear')
-
     enviarDatos(sock, user + " " + password, "dvnli" )
     serv, mensaje=escucharBus(sock)
     print(mensaje)
